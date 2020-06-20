@@ -17,6 +17,7 @@ class WordsScreen extends StatefulWidget {
 
 class _WordsScreenState extends State<WordsScreen> {
   final List<Word> _words = <Word>[];
+  final Set<Word> _selectedWords = <Word>{};
   int _pageNum = 1;
   bool _isLastPage = false;
 
@@ -55,29 +56,48 @@ class _WordsScreenState extends State<WordsScreen> {
         ),
         drawer: AppDrawer(),
         body: ListView.builder(
-            itemCount: _words.length, itemBuilder: _buildList));
+            itemCount: _words.length, itemBuilder: _buildWordList));
   }
 
-  Widget _buildList(BuildContext context, int index) {
+  Widget _buildWordList(BuildContext context, int index) {
     if (index >= _words.length - 1) {
       _getWords();
     } else {
-      return Card(
-          child: Padding(
-              padding: const EdgeInsets.only(left: 16.0, top: 8.0, bottom: 8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(_words[index].value,
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                  Text(_words[index].transcription ?? '',
-                      style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.grey.shade600)),
-                ],
-              )));
+      return _buildWordCard(_words[index]);
     }
+  }
+
+  Card _buildWordCard(Word word) {
+    return Card(
+        child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: <Widget>[
+                Checkbox(
+                    value: _selectedWords.contains(word),
+                    onChanged: (value) {
+                      setState(() {
+                        if (value) {
+                          _selectedWords.add(word);
+                        } else {
+                          _selectedWords.remove(word);
+                        }
+                      });
+                    }),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(word.value,
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold)),
+                    Text(word.transcription ?? '',
+                        style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.grey.shade600)),
+                  ],
+                )
+              ],
+            )));
   }
 }
