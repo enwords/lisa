@@ -1,11 +1,13 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:lisa/components/app_drawer.dart';
 import 'package:lisa/services/words/get_list.dart';
 import 'package:lisa/models/word.dart';
 
 class WordsScreen extends StatefulWidget {
   WordsScreen({Key key, this.title, this.status}) : super(key: key);
+
   final String title;
   final String status;
 
@@ -51,6 +53,7 @@ class _WordsScreenState extends State<WordsScreen> {
         appBar: AppBar(
           title: Text(widget.title),
         ),
+        drawer: AppDrawer(),
         body: ListView.builder(
             itemCount: _words.length, itemBuilder: _buildList));
   }
