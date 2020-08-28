@@ -1,7 +1,7 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:lisa/services/network/get_data.dart';
 
-class WordsGetList {
+class WordGetList {
   final String _backendHost = DotEnv().env['BACKEND_HOST'];
 
   Future<dynamic> call(String status, int page) async {

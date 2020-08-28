@@ -2,20 +2,20 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:lisa/components/app_drawer.dart';
-import 'package:lisa/services/words/get_list.dart';
+import 'package:lisa/services/word/get_list.dart';
 import 'package:lisa/models/word.dart';
 
-class WordsScreen extends StatefulWidget {
-  WordsScreen({Key key, this.title, this.status}) : super(key: key);
+class WordListScreen extends StatefulWidget {
+  WordListScreen({Key key, this.title, this.status}) : super(key: key);
 
   final String title;
   final String status;
 
   @override
-  _WordsScreenState createState() => _WordsScreenState();
+  _WordListScreenState createState() => _WordListScreenState();
 }
 
-class _WordsScreenState extends State<WordsScreen> {
+class _WordListScreenState extends State<WordListScreen> {
   final List<Word> _words = <Word>[];
   final Set<Word> _selectedWords = <Word>{};
   int _pageNum = 1;
@@ -37,15 +37,16 @@ class _WordsScreenState extends State<WordsScreen> {
   }
 
   Future<List<Word>> _fetchWordList(int page) async {
-    var wordsJson = await WordsGetList().call(widget.status, page);
+    var wordsJson = await WordGetList().call(widget.status, page);
     var wordsMap = json.decode(wordsJson);
     return Words.fromJson(wordsMap).collection;
   }
 
   @override
   void initState() {
-    _getWords();
     super.initState();
+
+    _getWords();
   }
 
   @override
@@ -62,9 +63,8 @@ class _WordsScreenState extends State<WordsScreen> {
   Widget _buildWordList(BuildContext context, int index) {
     if (index >= _words.length - 1) {
       _getWords();
-    } else {
-      return _buildWordCard(_words[index]);
     }
+    return _buildWordCard(_words[index]);
   }
 
   Card _buildWordCard(Word word) {

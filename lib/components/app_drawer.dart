@@ -17,18 +17,24 @@ class AppDrawer extends StatelessWidget {
               icon: Icons.help_outline,
               text: 'Unknown Words',
               onTap: () =>
-                  Navigator.pushReplacementNamed(context, Routes.unknownWords)),
+                  Navigator.pushReplacementNamed(context, Routes.wordsUnknown)),
           _createDrawerItem(
             icon: Icons.highlight_off,
             text: 'Learning Words',
             onTap: () =>
-                Navigator.pushReplacementNamed(context, Routes.learningWords),
+                Navigator.pushReplacementNamed(context, Routes.wordsLearning),
           ),
           _createDrawerItem(
             icon: Icons.check_circle_outline,
             text: 'Learned Words',
             onTap: () =>
-                Navigator.pushReplacementNamed(context, Routes.learnedWords),
+                Navigator.pushReplacementNamed(context, Routes.wordsLearned),
+          ),
+          _createDrawerItem(
+            icon: Icons.library_books,
+            text: 'Articles',
+            onTap: () =>
+                Navigator.pushReplacementNamed(context, Routes.articles),
           ),
           Divider(),
           _createDrawerItem(icon: Icons.bug_report, text: 'Report an issue'),

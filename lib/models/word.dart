@@ -8,8 +8,6 @@ class Word {
       {this.id,
       this.language,
       this.value,
-      this.pos,
-      this.weight,
       this.transcription});
 
   factory Word.fromJson(Map<String, dynamic> json) => _$WordFromJson(json);
@@ -17,8 +15,6 @@ class Word {
   int id;
   String language;
   String value;
-  String pos;
-  int weight;
   String transcription;
 
   Map<String, dynamic> toJson() => _$WordToJson(this);
