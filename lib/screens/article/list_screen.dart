@@ -66,10 +66,11 @@ class _ArticleListScreenState extends State<ArticleListScreen> {
   }
 
   Widget _buildArticleList(BuildContext context, int index) {
+    var result = _buildArticleCard(_articles[index]);
     if (index >= _articles.length - 1) {
       _getArticles();
     }
-    return _buildArticleCard(_articles[index]);
+    return result;
   }
 
   Card _buildArticleCard(Article article) {

@@ -61,10 +61,11 @@ class _WordListScreenState extends State<WordListScreen> {
   }
 
   Widget _buildWordList(BuildContext context, int index) {
+    var result = _buildWordCard(_words[index]);
     if (index >= _words.length - 1) {
       _getWords();
     }
-    return _buildWordCard(_words[index]);
+    return result;
   }
 
   Card _buildWordCard(Word word) {
