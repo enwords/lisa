@@ -11,8 +11,6 @@ Word _$WordFromJson(Map<String, dynamic> json) {
     id: json['id'] as int,
     language: json['language'] as String,
     value: json['value'] as String,
-    pos: json['pos'] as String,
-    weight: json['weight'] as int,
     transcription: json['transcription'] as String,
   );
 }
@@ -21,8 +19,6 @@ Map<String, dynamic> _$WordToJson(Word instance) => <String, dynamic>{
       'id': instance.id,
       'language': instance.language,
       'value': instance.value,
-      'pos': instance.pos,
-      'weight': instance.weight,
       'transcription': instance.transcription,
     };
 
